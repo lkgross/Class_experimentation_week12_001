@@ -61,9 +61,19 @@ def operation1(n):
         sum = sum + i
     return sum
 
+
+def operation2(n):
+    '''Add the first n numbers.'''
+    product = 1
+    for i in range(1, n + 1):
+        product = product * i
+    return product
+
+
 def timesTable():
     for i in range(1, 13):
-        print(f'1 * {i} = {1*i}')
+        print(f'1 * {i} = {1 * i}')
+
 
 def timesTable2():
     for i in range(1, 13):
@@ -71,16 +81,99 @@ def timesTable2():
             print(f'{i} * {j} = {i * j}')
 
 
+#  Recursion is another way to write indefinite loops
+#  besides while.
+#  Recursive actions invoke themselves.
+
+def maze():
+    '''Remain lost if you turn left and
+    fall in a pit if you do anything else.'''
+    response = 'left'
+    while response == 'left':
+        response = input("You are lost in a scary maze. "
+                         "Will you go left or right? ")
+    print("You fall in a pit. You lose.")
+
+
+# Recursive functions call themselves.
+def maze2():
+    '''Use recursion to remain lost if you turn left and
+        fall in a pit if you do anything else.'''
+    # INITIALIZE the variable response
+    # and subsequently update it.
+    response = input("You are lost in a scary maze. "
+                     "Will you go left or right? ")
+    # Define a STOP condition.
+    if response != 'left':
+        print("You fall in a pit. You lose.")
+    else:
+        # Have the function CALL ITSELF.
+        maze2()
+
+
+# A for loop is a definite.
+# Loops with while and recursion are indefinite loops.
+# Functions that can be written with for can also be written with while.
+# Functions that can be written with for can also be written with recursion.
+# Functions that can be written with recursion can't necessarily be written with for.
+
+def countdown_recursive(number):
+    # Define a STOP condition.
+    if number < 0:
+        print("Blastoff!")
+    else:
+        print(number)
+        countdown_recursive(number - 1)
+
+
+# This function contains a common error!
+# Put the stop condition in an if
+# and then put the recursive call in an else block.
+'''
+def countdown_recursive2(number):
+    print(number)
+    countdown_recursive2(number - 1)
+    # Define a STOP condition.
+    if number < 0:
+        print("Blastoff!")
+'''
+
+# An alternative to a stop condition is a go condition.
+def countdown_recursive3(number):
+    # Define a GO condition.
+    if number >= 0:
+        print(number)
+        countdown_recursive(number - 1)
+    else:
+        print("Blastoff!")
+
+
+# What is the error in this version?
+def countdown_recursive_wrong(number):
+    # Define a GO condition.
+    if number >= 0:
+        print(number)
+        countdown_recursive_wrong(number - 1)
+    print("Blastoff!")
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     # print_hi('Laura')
     # loop1()
-    # loop2(2)
+    # loop2(3)
     # loop3()
-    # loop4(1, 10, 2)
+    # loop4(3, 10, 3)
     # loop5()
     # loop6()
     # print(operation1(6))
-    timesTable2()
+    # print(operation2(6))
+    # timesTable()
+    # timesTable2()
+    # maze()
+    # maze2()
+    # countdown_recursive(10)
+    # countdown_recursive2(10)
+    # countdown_recursive3(10)
+    countdown_recursive_wrong(10)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
