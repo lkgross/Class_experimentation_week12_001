@@ -1,3 +1,4 @@
+import random
 # This is a sample Python script.
 
 # Press Shift+F10 to execute it or replace it with your code.
@@ -70,6 +71,14 @@ def operation2(n):
     return product
 
 
+def operation3():
+    my_grades = [4, 3, 4, 2, 3, 3, 4]
+    my_string = f'Your grades are: {my_grades[0]}'
+    for i in range(1, len(my_grades)):
+        my_string = my_string + ', ' + str(my_grades[i])
+    return my_string
+
+
 def timesTable():
     for i in range(1, 13):
         print(f'1 * {i} = {1 * i}')
@@ -117,6 +126,41 @@ def maze2():
 # Functions that can be written with for can also be written with recursion.
 # Functions that can be written with recursion can't necessarily be written with for.
 
+# Functions written with while can be rewritten recursion and vice versa.
+def guess_number():
+    '''Prompt the user to guess a number between 1 and 10.
+    Prompt for higher or lower as needed.
+    Report when the guess is correct.'''
+    # Generate the random number to be guessed.
+    answer = random.randrange(10) + 1
+    guess = int(input("Guess a number between 1 and 10. "))
+    while guess != answer:
+        if guess < answer:
+            guess = int(input("Guess higher! "))
+        else:
+            guess = int(input("Guess lower! "))
+    print("You guessed it!")
+
+
+def guess_number2():
+    '''Prompt the user to guess a number between 1 and 10.
+    Prompt for higher or lower as needed.
+    Report when the guess is correct. Use recursion.'''
+    # Generate the random number to be guessed.
+    answer = random.randrange(10) + 1
+    guess = int(input("Guess a number between 1 and 10. "))
+    try_it(answer, guess)
+
+def try_it(answer, guess):
+    if guess == answer:
+        print("You guessed it!")
+    elif guess < answer:
+        guess = int(input("Guess higher! "))
+        try_it(answer, guess)
+    else:
+        guess = int(input("Guess lower! "))
+        try_it(answer, guess)
+
 def countdown_recursive(number):
     # Define a STOP condition.
     if number < 0:
@@ -138,6 +182,7 @@ def countdown_recursive2(number):
         print("Blastoff!")
 '''
 
+
 # An alternative to a stop condition is a go condition.
 def countdown_recursive3(number):
     # Define a GO condition.
@@ -155,6 +200,7 @@ def countdown_recursive_wrong(number):
         print(number)
         countdown_recursive_wrong(number - 1)
     print("Blastoff!")
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
@@ -174,6 +220,10 @@ if __name__ == '__main__':
     # countdown_recursive(10)
     # countdown_recursive2(10)
     # countdown_recursive3(10)
-    countdown_recursive_wrong(10)
+    # countdown_recursive_wrong(3)
+    # print(operation3())
+    # guess_number()
+    # guess_number2()
+    try_it(2, 5)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
